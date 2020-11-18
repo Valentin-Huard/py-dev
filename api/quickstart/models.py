@@ -1,9 +1,11 @@
 from django.db import models
 
 # Create your models here.
-class Users(models.Model):
-    matricule = models.CharField(max_length=200)
-    motDePasse = models.DateTimeField(max_length=50)
+
+
+class User(models.Model):
+    username = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
 
 class Tram(models.Model):
     nbPlace = models.IntegerField(default=0)

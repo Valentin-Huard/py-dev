@@ -1,39 +1,36 @@
-from django.contrib.auth.models import User, Group
-from quickstart.models import  Ligne, Tram, Trajet
+from quickstart.models import Ligne, Tram, Trajet
+from django.contrib.auth.models import User
 from rest_framework import viewsets
-from quickstart.serializers import UserSerializer, GroupSerializer, LigneSerializer, TrajetSerializer, TramSerializer
+from quickstart.serializers import UserSerializer, LigneSerializer, TrajetSerializer, TramSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
+
 
 class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint  allows users to be viewed or edited.
-    """
-    queryset = User.objects.all().order_by('-date_joined')
+    permission_classes = (IsAuthenticated,)
+    queryset = User.objects.all()
     serializer_class = UserSerializer
-
-class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint  allows groups to be viewed or edited.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+    def create(self, request, *args, **kwargs):
+        password = request.data['password']
+        username = request.data['username']
+        email = request.data['email']
+        user = User.objects.create(username=username)
+        user.set_password(password)
+        user.save()
+        return Response(None, status.HTTP_200_OK)
 
 class LigneViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint  allows groups to be viewed or edited.
-    """
+    permission_classes = (IsAuthenticated,)
     queryset = Ligne.objects.all()
     serializer_class = LigneSerializer
 
 class TrajetViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint  allows groups to be viewed or edited.
-    """
+    permission_classes = (IsAuthenticated,)
     queryset = Trajet.objects.all()
     serializer_class = TrajetSerializer
 
 class TramViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint  allows groups to be viewed or edited.
-    """
+    permission_classes = (IsAuthenticated,)
     queryset = Tram.objects.all()
     serializer_class = TramSerializer
