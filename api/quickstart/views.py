@@ -14,10 +14,18 @@ class UserViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         password = request.data['password']
         username = request.data['username']
-        email = request.data['email']
         user = User.objects.create(username=username)
         user.set_password(password)
         user.save()
+        return Response(None, status.HTTP_200_OK)
+    def update(self, request, *args, **kwargs):
+        user = User.objects.get(id = request.data['id'])
+        user.username = request.data['username']
+        user.save()
+        return Response(None, status.HTTP_200_OK)
+    def destroy(self, request, *args, **kwargs):
+        user = User.objects.get(id = request.data['id'])
+        user.delete()
         return Response(None, status.HTTP_200_OK)
 
 class LigneViewSet(viewsets.ModelViewSet):
