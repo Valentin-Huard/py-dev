@@ -5,6 +5,7 @@ from quickstart.serializers import UserSerializer, LigneSerializer, TrajetSerial
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
+from datetime import datetime
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -53,10 +54,25 @@ class PredictionViewSet(viewsets.ModelViewSet):
     queryset = Prediction.objects.all()
     serializer_class = PredictionSerializer
     def get_queryset(self):
-        qs = super().get_queryset()
-        return qs.filter(name__startswith=self.kwargs['date'])
+        date =''
+        if self.request.GET.get('annee'):
+            date += self.request.GET.get('annee')
+        else:
+            date += '2500'
+        if self.request.GET.get('mois'):
+            date += self.request.GET.get('mois')
+        else:
+            date += '12'
+        if self.request.GET.get('jours'):
+            date += self.request.GET.get('jours')
+        else:
+            date += '30'
+
+        datetimeobject = datetime.strptime(date,'%Y%m%d')
+        newformat = datetimeobject.strftime('YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]')
+        return super(PredictionViewSet, self).get_queryset().filter(date__lte = datetimeobject).filter(ligne_id=self.request.GET.get('ligne_id'))
     def update(self, request, *args, **kwargs):
-        data = Data.objects.get(id = request.data['id'])
-        data.isApproved = request.data['isApproved']
+        pred = Prediction.objects.get(id = request.data['id'])
+        pred.isApproved = request.data['isApproved']
         return Response(None, status.HTTP_200_OK)
 
