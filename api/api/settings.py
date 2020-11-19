@@ -25,10 +25,10 @@ SECRET_KEY = '-3)g%1z*%#ayp9b*h0^a!u^%1bv=#2w^3vn&25)-78(b=92u4x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["cfc7c9993b21.ngrok.io", "localhost"]
+ALLOWED_HOSTS = ["fdf5f29b9c27.ngrok.io", "localhost"]
 
 CORS_ALLOWED_ORIGINS = [
-"https://cfc7c9993b21.ngrok.io", "https://localhost"
+"https://fdf5f29b9c27.ngrok.io", "https://localhost"
 ]
 
 CORS_ALLOW_METHODS = [
@@ -104,11 +104,17 @@ PASSWORD_HASHERS = ['django.contrib.auth.hashers.BCryptSHA256PasswordHasher']
 
 DATABASES = {
     'default': {
+
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
         'NAME': 'postgres',
+
         'USER': 'postgres',
+
         'PASSWORD': '',
+
         'HOST': 'localhost',
+
         'PORT': '5432',
         }
 }
