@@ -105,7 +105,7 @@ PASSWORD_HASHERS = ['django.contrib.auth.hashers.BCryptSHA256PasswordHasher']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
+        'NAME': 'tan',
         'USER': 'postgres',
         'PASSWORD': '',
         'HOST': 'localhost',
