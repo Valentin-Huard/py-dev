@@ -36,5 +36,5 @@ class Prediction(models.Model):
         on_delete=models.CASCADE,
     )
     prediction = models.IntegerField(default=0)
-    date = models.DateTimeField
+    date = models.DateTimeField()
     isApproved = models.BooleanField(default=False)
