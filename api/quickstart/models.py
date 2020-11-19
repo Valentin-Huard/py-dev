@@ -22,3 +22,11 @@ class Trajet(models.Model):
     ligne_id = models.ForeignKey('Ligne',
         on_delete=models.CASCADE,
     )
+
+class datas(models.Model):
+    trajet = models.ForeignKey('Trajet',
+        on_delete=models.CASCADE,
+    )
+    nombre_personne = models.IntegerField
+    motif_exceptionnel = models.CharField(max_length=200)
+    created_at = models.DateTimeField
