@@ -55,15 +55,15 @@ class PredictionViewSet(viewsets.ModelViewSet):
     serializer_class = PredictionSerializer
     def get_queryset(self):
         date =''
-        if self.request.GET.get('annee'):
+        if self.request.GET.get('annee') and self.request.GET.get('annee')  != 'null':
             date += self.request.GET.get('annee')
         else:
             date += '2500'
-        if self.request.GET.get('mois'):
+        if self.request.GET.get('mois') and self.request.GET.get('mois') != 'null':
             date += self.request.GET.get('mois')
         else:
             date += '12'
-        if self.request.GET.get('jours'):
+        if self.request.GET.get('jours') and self.request.GET.get('mois') != 'null':
             date += self.request.GET.get('jours')
         else:
             date += '30'
