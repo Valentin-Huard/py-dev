@@ -9,6 +9,8 @@ router.register(r'user', views.UserViewSet)
 router.register(r'ligne', views.LigneViewSet)
 router.register(r'tram', views.TramViewSet)
 router.register(r'trajet', views.TrajetViewSet)
+router.register(r'datas', views.DatasViewSet)
+router.register(r'prediction', views.PredictionViewSet)
 
 # Use automatic URL routing
 # Can also include login URLs for the browsable API
