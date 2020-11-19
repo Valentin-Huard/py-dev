@@ -1,0 +1,26 @@
+[
+  {
+    "model": "quickstart.Ligne",
+    "pk": 1,
+    "fields": {
+      "numero": 1,
+      "libelle": "Mitterand-Beaujoire"
+    }
+  },
+  {
+    "model": "quickstart.Ligne",
+    "pk": 2,
+    "fields": {
+      "numero": 2,
+      "libelle": "Neustrie-Marcel Paul"
+    }
+  },
+  {
+    "model": "quickstart.Ligne",
+    "pk": 3,
+    "fields": {
+      "numero": 3,
+      "libelle": "Orvault-Gare de Pont Rousseau"
+    }
+  }
+]
