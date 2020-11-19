@@ -35,6 +35,6 @@ class Prediction(models.Model):
     ligne = models.ForeignKey('Ligne',
         on_delete=models.CASCADE,
     )
-    prediciton = models.IntegerField
+    prediciton = models.IntegerField(default=0)
     date = models.DateTimeField
     isApproved = models.BooleanField(default=False)
