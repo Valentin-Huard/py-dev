@@ -127,6 +127,7 @@ class PredictionViewSet(viewsets.ModelViewSet):
         pred = Prediction.objects.get(id=pk)
         if request.data.get('isApproved') and request.data.get('isApproved') != 'null':
             pred.isApproved = request.data['isApproved']
+            pred.save()
             return Response(None, status.HTTP_200_OK)
         else:
             return Response(None, status.HTTP_400_BAD_REQUEST)
