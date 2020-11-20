@@ -23,9 +23,10 @@ class TramSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['nbPlace']
 
 class PredictionSerializer(serializers.HyperlinkedModelSerializer):
+    nbTram = serializers.IntegerField()
     class Meta:
         model = Prediction
-        fields = ['id', 'prediction',  'date', 'ligne_id', 'isApproved']
+        fields = ['id', 'prediction',  'date', 'ligne_id', 'isApproved', 'nbTram']
 
 class DatasSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
