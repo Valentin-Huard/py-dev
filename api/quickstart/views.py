@@ -123,7 +123,10 @@ class PredictionViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data)
 
-    def update(self, request, *args, **kwargs):
-        pred = Prediction.objects.get(id=request.data['id'])
-        pred.isApproved = request.data['isApproved']
-        return Response(None, status.HTTP_200_OK)
+    def update(self, request, pk):
+        pred = Prediction.objects.get(id=pk)
+        if request.data.get('isApproved') and request.data.get('isApproved') != 'null':
+            pred.isApproved = request.data['isApproved']
+            return Response(None, status.HTTP_200_OK)
+        else:
+            return Response(None, status.HTTP_400_BAD_REQUEST)
