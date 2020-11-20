@@ -72,9 +72,15 @@ class PredictionViewSet(viewsets.ModelViewSet):
                 month = self.request.GET.get('month')
                 if self.request.GET.get('day') and self.request.GET.get('day') != 'null':
                     day = self.request.GET.get('day')
-                    return super(PredictionViewSet, self).get_queryset().filter(
-                        date=datetime(int(year), int(month), int(day))).filter(
-                        ligne_id=self.request.GET.get('ligne_id'))
+                    if self.request.GET.get('hour') and self.request.GET.get('hour') != 'null':
+                        hour = self.request.GET.get('hour')
+                        return super(PredictionViewSet, self).get_queryset().filter(
+                            date=datetime(int(year), int(month), int(day), int(hour))).filter(
+                            ligne_id=self.request.GET.get('ligne_id'))
+                    else:
+                        return super(PredictionViewSet, self).get_queryset().filter(
+                            date=datetime(int(year), int(month), int(day))).filter(
+                            ligne_id=self.request.GET.get('ligne_id'))
                 else:
                     date_min = datetime(int(year), int(month), 1, tzinfo=pytz.UTC)
 
